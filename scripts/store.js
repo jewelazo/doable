@@ -17,6 +17,9 @@ const STORE = (function (){
     function getAllTasks(){
         return [...tasks];
     }
+    function addNewTask(newTask){
+        tasks=[...tasks,newTask];
+    }
 
 
     return {
@@ -24,6 +27,7 @@ const STORE = (function (){
         setUserData,
         setTasks,
         getAllTasks,
+        addNewTask,
     }
 
 

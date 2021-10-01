@@ -1,8 +1,25 @@
+import DOMHandler from "../../dom_handler.js";
 import HeaderPage from "../components/header.js"
+import { TaskFetcher } from "../services/task_fetcher.js";
 import STORE from "../store.js";
 
 const Main=(()=>{
     let header=HeaderPage();
+
+    async function onCreateTask(e){
+        e.preventDefault();
+        try{
+            const {title,due_date}=e.target;
+            const newTask= await TaskFetcher.create({title:title.value,'due_date':due_date.value})
+            console.log(newTask);
+            STORE.addNewTask(newTask);
+            DOMHandler.render(Main);
+
+        }catch(e){
+            alert(e);
+        }
+
+    }
 
     return {
         render: function(){
@@ -22,7 +39,7 @@ const Main=(()=>{
             console.log(allTasksList);
             return `
                 ${header}
-            <form action="">
+            <form class="js-form-main" action="">
                 <div>
                 <label for="sort">Sort</label>
                 <select name="sort" id="">
@@ -48,6 +65,10 @@ const Main=(()=>{
                 `
         },
         initEventListeners: function(){
+            const form=document.querySelector('.js-form-main');
+            if (form){
+                form.addEventListener('submit',onCreateTask);
+            }
             header.initEventListeners();
         }
     }
