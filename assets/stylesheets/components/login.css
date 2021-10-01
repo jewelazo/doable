@@ -1,0 +1,21 @@
+.header-login{
+    padding: 12px 131px 12px 129px;
+    background-color: #E5E7EB;
+}
+.container-login{
+    padding: 96px 18px 250px 14px;
+}
+/* .email-input{
+    padding: 9px 13px;
+} */
+.btn-submit{
+    width: 328px;
+}
+.link-create-account{
+    text-decoration: none;
+}
+.div-create-account{
+    display: flex;
+    width: 328px;
+    justify-content: center;
+}

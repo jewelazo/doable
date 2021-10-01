@@ -15,8 +15,8 @@
 body {
   font-family: var(--primary-font);
   font-weight: normal;
-  width: 375px;
-  height: 621px;
+  width: 360px;
+  height: 640px;
 }
 
 * {
@@ -55,7 +55,7 @@ h5 {
   color: var(--font-black);
 }
 
-label {
+/* label {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -106,4 +106,4 @@ a i {
   display: block;
   text-align: right;
   padding: 10px 38px;
-}
+} */
