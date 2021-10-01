@@ -1,0 +1,109 @@
+:root {
+  --font-black: #262626;
+  --font-dark-grey: #595959; 
+  --font-grey: #BFBFBF;    
+  --font-blue: #2962FF;
+  --font-red: #F5222D;
+  --color-white: #ffffff;
+  --background-light-gray: #E5E5E5;
+  --color-black-borders: #000000;
+  --color-grey-hover: #F5F5F5;
+  --color-grey-btn-new-category: #E8EAED;
+  --border-gray: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+body {
+  font-family: var(--primary-font);
+  font-weight: normal;
+  width: 375px;
+  height: 621px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+h2 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 40px;
+  text-align: center;
+  color: var(--font-black);
+}
+
+h3 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: left;
+  color: var(--font-black);
+}
+
+h5 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--font-black);
+}
+
+label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--font-black);
+}
+
+input {
+  background: var(--background-white);
+  border: var(--border-blue);
+  border-radius: 8px;
+  height: 40px;
+  padding: 5px;
+}
+
+button {
+  padding: 8px 16px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--font-white);
+  background: var(--background-blue);
+  border-radius: 8px;
+  border: none;
+}
+
+a {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--font-blue);
+  text-decoration: none;
+}
+
+a i {
+  pointer-events: none;
+}
+
+.js-content {
+  margin-bottom: 100px;
+}
+
+.logout {
+  display: block;
+  text-align: right;
+  padding: 10px 38px;
+}
