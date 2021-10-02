@@ -9,7 +9,7 @@ const Main=(()=>{
 
     function onOrderBy(e){
         const order=e.target;
-        console.log(order.value)
+
 
         if (order.value==='alpha'){
             console.log(order.value)
@@ -39,7 +39,35 @@ const Main=(()=>{
             
         }
        
-        console.log(order.value)
+    }
+
+    async function onShow(e){
+        const choosed=e.target.closest('.js-pending');
+        const choosed_imp=e.target.closest('.js-import');
+        console.log(choosed)
+        if (choosed){
+            if (choosed.checked){
+                STORE.filterByPending();
+                STORE.onShow=true;
+                DOMHandler.render(Main);
+            }else if (choosed.checked===false){
+                await STORE.offByPending();
+                STORE.onShow=false;
+                DOMHandler.render(Main);
+            }
+        }
+       
+        if (choosed_imp){
+            if (choosed_imp.checked){
+                STORE.filterByImport();
+                STORE.onImport=true;
+                DOMHandler.render(Main);
+            }else if (choosed_imp.checked===false){
+                await STORE.offByImport();
+                STORE.onImport=false;
+                DOMHandler.render(Main);
+            }
+         }
     }
 
     async function onCreateTask(e){
@@ -63,11 +91,11 @@ const Main=(()=>{
             console.log('ahora main es:',allTasks);
             let allTasksList=allTasks.map( task=>
                 `<li class="flex-task-li">
-                <div><input type="checkbox"></div>
+                <div><input type="checkbox" ${task.completed ? 'checked':''}></div>
                 <div class="flex-column-task">
                     <div class="flex-description">
                         <div>${task.title}</div>
-                        <div><img src="./assets/icons/icon_off_importance.svg" alt=""></div>
+                        <div><img src="./assets/icons/${task.important ? 'icon_on_importance.svg':'icon_off_importance.svg'}" alt=""></div>
                     </div>
                     <div class="date-task">${task['due_date']}</div>
                 </div>
@@ -86,8 +114,8 @@ const Main=(()=>{
                 </div>
                 <div class="js-checkbox">
                     <label for="show">Show</label>
-                    <input class="js-pending" type="checkbox" value="pending" checked>Only pending
-                    <input class="js-import" type="checkbox" value="important" checked>Only important
+                    <input class="js-pending" type="checkbox" value="pending" ${STORE.onShow ? 'checked':''} >Only pending
+                    <input class="js-import" type="checkbox" value="important" ${STORE.onImport ? 'checked':''} >Only important
                 </div>
                 <ul>
                     ${allTasksList.join('')}
@@ -102,10 +130,14 @@ const Main=(()=>{
         },
         initEventListeners: function(){
             const form=document.querySelector('.js-form-main');
+            const check=document.querySelector('.js-checkbox');
 
             if (form){
                 form.addEventListener('submit',onCreateTask);
                 form.addEventListener('change',onOrderBy);
+            }
+            if (check){
+                check.addEventListener('click',onShow);
             }
             header.initEventListeners();
         }

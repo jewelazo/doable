@@ -1,5 +1,7 @@
 //import { ALFABETICO } from "./constants.js";
 
+import { TaskFetcher } from "./services/task_fetcher.js";
+
 const STORE = (function (){
     let userData={};
     let tasks=[];
@@ -39,6 +41,20 @@ const STORE = (function (){
 
     }
 
+    function filterByPending(){
+        tasks=tasks.filter(task => task.completed===false);
+    }
+    async function offByPending(){
+        tasks= await TaskFetcher.getAll();
+    }
+
+    function filterByImport(){
+        tasks=tasks.filter(task => task.important);
+    }
+    async function offByImport(){
+        tasks= await TaskFetcher.getAll();
+    }
+
     return {
         clear,
         setUserData,
@@ -46,9 +62,15 @@ const STORE = (function (){
         getAllTasks,
         addNewTask,
         orderBy:null,
+        onShow:null,
+        onImport:null,
         orderByAlpha,
         orderByDate,
         orderByImportance,
+        filterByPending,
+        offByPending,
+        filterByImport,
+        offByImport,
     }
 
 
