@@ -1,18 +1,22 @@
 import DOMHandler from "../../dom_handler.js";
 import { SessionFetcher } from "../services/sessions_fetch.js";
 import { TaskFetcher } from "../services/task_fetcher.js";
+import STORE from "../store.js";
+import Main from "./main.js";
 import SignUp from "./sign-up.js";
 
 const Login=(()=>{
     async function onLogin(e){
         e.preventDefault();
-        const {email,password}=e.target;
         try{
+            const {email,password}=e.target;
             const userData= await SessionFetcher.login(email.value,password.value);
+            STORE.setUserData(userData);
             sessionStorage.setItem('token',userData.token);
-            const taskData= await TaskFetcher.getAll();
-            console.log(taskData);
-            console.log('logeado and traes data');
+            const tasks = await TaskFetcher.getAll();
+            STORE.setTasks(tasks);
+            //const taskData= await TaskFetcher.getAll();
+            DOMHandler.render(Main);
         }catch(e){
             alert('Invalid Credentials');
         }
