@@ -85,15 +85,26 @@ const Main=(()=>{
 
     }
 
-    // async function onChangeImportant(e){
-    //     const taskId=e.target.dataset.id;
-    //     let taskData=STORE.getTask(parseInt(taskId));
-    //     taskData.important=!taskData.important
-    //     const TaskUpdated= await TaskFetcher.update(taskId,taskData);
-    //     console.log(TaskUpdated);
+    async function onChangeImportant(e){
+        const taskId=e.target.dataset.id;
+        let taskData=STORE.getTask(parseInt(taskId));
+        taskData.important=!taskData.important
+        await TaskFetcher.update(taskId,{important:taskData.important});
+        STORE.updateTaskByImg(taskId,taskData.important);
+        DOMHandler.render(Main);
         
+    }
+    async function onChangePending(e){
+        const taskId=e.target.dataset.id;
+        let taskData=STORE.getTask(parseInt(taskId));
+        taskData.completed=!taskData.completed;
+        await TaskFetcher.update(taskId,{completed:taskData.completed});
+        STORE.updateTaskByCheckbox(taskId,taskData.completed);
+        DOMHandler.render(Main);
+        
+    }
 
-    // }
+
 
     return {
         render: function(){
@@ -101,7 +112,7 @@ const Main=(()=>{
             console.log('ahora main es:',allTasks);
             let allTasksList=allTasks.map( task=>
                 `<li class="flex-task-li">
-                <div><input type="checkbox" ${task.completed ? 'checked':''}></div>
+                <div><input class="js-checkbox-pending" data-id=${task.id} type="checkbox" ${task.completed ? 'checked':''}></div>
                 <div class="flex-column-task">
                     <div class="flex-description">
                         <div>${task.title}</div>
@@ -141,7 +152,8 @@ const Main=(()=>{
         initEventListeners: function(){
             const form=document.querySelector('.js-form-main');
             const check=document.querySelector('.js-checkbox');
-            //const imgImportant=document.querySelectorAll('.js-img-imp');
+            const imgImportant=document.querySelectorAll('.js-img-imp');
+            const checkPending=document.querySelectorAll('.js-checkbox-pending');
 
             if (form){
                 form.addEventListener('submit',onCreateTask);
@@ -150,9 +162,12 @@ const Main=(()=>{
             if (check){
                 check.addEventListener('click',onShow);
             }
-            // if (imgImportant){
-            //     imgImportant.forEach( img => img.addEventListener('click',onChangeImportant));
-            // }
+            if (imgImportant){
+                imgImportant.forEach( img => img.addEventListener('click',onChangeImportant));
+            }
+            if (checkPending){
+                checkPending.forEach(checkbox => checkbox.addEventListener('click',onChangePending));
+            }
             header.initEventListeners();
             
         }

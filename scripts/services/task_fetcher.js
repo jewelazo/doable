@@ -22,7 +22,7 @@ export const TaskFetcher=(function(){
             ),
         update:(taskId,taskData)=>
             apiFetch(
-                `task/${taskId}`,
+                `tasks/${taskId}`,
                 'PATCH',
                 {
                     "Content-Type": "application/json",
