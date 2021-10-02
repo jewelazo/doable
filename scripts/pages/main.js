@@ -85,6 +85,16 @@ const Main=(()=>{
 
     }
 
+    // async function onChangeImportant(e){
+    //     const taskId=e.target.dataset.id;
+    //     let taskData=STORE.getTask(parseInt(taskId));
+    //     taskData.important=!taskData.important
+    //     const TaskUpdated= await TaskFetcher.update(taskId,taskData);
+    //     console.log(TaskUpdated);
+        
+
+    // }
+
     return {
         render: function(){
             let allTasks=STORE.getAllTasks();
@@ -95,7 +105,7 @@ const Main=(()=>{
                 <div class="flex-column-task">
                     <div class="flex-description">
                         <div>${task.title}</div>
-                        <div><img src="./assets/icons/${task.important ? 'icon_on_importance.svg':'icon_off_importance.svg'}" alt=""></div>
+                        <div><img class="js-img-imp" data-id=${task.id} src="./assets/icons/${task.important ? 'icon_on_importance.svg':'icon_off_importance.svg'}" alt=""></div>
                     </div>
                     <div class="date-task">${task['due_date']}</div>
                 </div>
@@ -131,6 +141,7 @@ const Main=(()=>{
         initEventListeners: function(){
             const form=document.querySelector('.js-form-main');
             const check=document.querySelector('.js-checkbox');
+            //const imgImportant=document.querySelectorAll('.js-img-imp');
 
             if (form){
                 form.addEventListener('submit',onCreateTask);
@@ -139,7 +150,11 @@ const Main=(()=>{
             if (check){
                 check.addEventListener('click',onShow);
             }
+            // if (imgImportant){
+            //     imgImportant.forEach( img => img.addEventListener('click',onChangeImportant));
+            // }
             header.initEventListeners();
+            
         }
     }
 

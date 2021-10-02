@@ -54,6 +54,9 @@ const STORE = (function (){
     async function offByImport(){
         tasks= await TaskFetcher.getAll();
     }
+    function getTask(id){
+        return tasks.find(task =>task.id===id);
+    }
 
     return {
         clear,
@@ -71,6 +74,7 @@ const STORE = (function (){
         offByPending,
         filterByImport,
         offByImport,
+        getTask,
     }
 
 
