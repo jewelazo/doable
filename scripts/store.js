@@ -1,4 +1,4 @@
-import { ALFABETICO } from "./constants";
+//import { ALFABETICO } from "./constants.js";
 
 const STORE = (function (){
     let userData={};
@@ -13,7 +13,8 @@ const STORE = (function (){
 
     }
     function setTasks(tasks_data){
-        tasks=tasks_data;
+        tasks= tasks_data;
+        STORE.orderByAlpha();
     }
 
     function getAllTasks(){
@@ -23,6 +24,20 @@ const STORE = (function (){
         tasks=[...tasks,newTask];
     }
 
+    function orderByDate(){
+        tasks.sort((a,b)=> new Date(b['due_date'])- new Date(a['due_date']));
+
+    }
+
+    function orderByAlpha(){
+        tasks.sort((a,b)=>a.title.toUpperCase().localeCompare(b.title.toUpperCase()));
+        
+
+    }
+    function orderByImportance(){
+        tasks.sort((a,b)=>b.important-a.important);
+
+    }
 
     return {
         clear,
@@ -30,7 +45,10 @@ const STORE = (function (){
         setTasks,
         getAllTasks,
         addNewTask,
-        //orderBy:ALFABETICO,
+        orderBy:null,
+        orderByAlpha,
+        orderByDate,
+        orderByImportance,
     }
 
 

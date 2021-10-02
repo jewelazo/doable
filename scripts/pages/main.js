@@ -1,18 +1,46 @@
 import DOMHandler from "../../dom_handler.js";
 import HeaderPage from "../components/header.js"
+import { DUE_DATE,IMPORTANCE,ALFABETICO } from "../constants.js";
 import { TaskFetcher } from "../services/task_fetcher.js";
 import STORE from "../store.js";
 
 const Main=(()=>{
     let header=HeaderPage();
 
-    // function onOrderBy(e){
-    //     const order=e.target;
-    //     console.log(order);
-    //     console.log(order.value);
+    function onOrderBy(e){
+        const order=e.target;
+        console.log(order.value)
 
-
-    // }
+        if (order.value==='alpha'){
+            console.log(order.value)
+            STORE.orderByAlpha();
+            STORE.orderBy=ALFABETICO;
+            let taskss=STORE.getAllTasks()
+            console.log('poralpha',taskss)
+            DOMHandler.render(Main);
+            
+        }
+        if (order.value==='date'){
+            console.log(order.value)
+            STORE.orderByDate();
+            STORE.orderBy=DUE_DATE;
+            let taskss=STORE.getAllTasks()
+            console.log('pordate',taskss)
+            DOMHandler.render(Main);
+            
+        }
+        if (order.value==='importance'){
+            console.log(order.value)
+            STORE.orderByImportance();
+            STORE.orderBy=IMPORTANCE;
+            let taskss=STORE.getAllTasks()
+            console.log('porimportancia',taskss)
+            DOMHandler.render(Main);
+            
+        }
+       
+        console.log(order.value)
+    }
 
     async function onCreateTask(e){
         e.preventDefault();
@@ -32,7 +60,7 @@ const Main=(()=>{
     return {
         render: function(){
             let allTasks=STORE.getAllTasks();
-            console.log(allTasks);
+            console.log('ahora main es:',allTasks);
             let allTasksList=allTasks.map( task=>
                 `<li class="flex-task-li">
                 <div><input type="checkbox"></div>
@@ -44,22 +72,22 @@ const Main=(()=>{
                     <div class="date-task">${task['due_date']}</div>
                 </div>
                 </li>`);
-            console.log(allTasksList);
+            //console.log(allTasksList);
             return `
                 ${header}
             <form class="js-form-main" action="">
                 <div>
                 <label for="sort">Sort</label>
-                <select name="sort" id="">
-                    <option value="alphabetical">Alphabetical (a-z)</option>
-                    <option value="date">Due Date</option>
-                    <option value="importance">Importance</option>
+                <select class="js-select" name="sort" id="">
+                    <option value="alpha" ${STORE.orderBy===ALFABETICO ? 'selected':''}>Alphabetical (a-z)</option>
+                    <option value="date" ${STORE.orderBy===DUE_DATE ? 'selected':''}>Due Date</option>
+                    <option value="importance" ${STORE.orderBy===IMPORTANCE ? 'selected':''}>Importance</option>
                 </select>
                 </div>
-                <div>
+                <div class="js-checkbox">
                     <label for="show">Show</label>
-                    <input type="checkbox" value="pending" checked>Only pending
-                    <input type="checkbox" value="important" checked>Only important
+                    <input class="js-pending" type="checkbox" value="pending" checked>Only pending
+                    <input class="js-import" type="checkbox" value="important" checked>Only important
                 </div>
                 <ul>
                     ${allTasksList.join('')}
@@ -77,7 +105,7 @@ const Main=(()=>{
 
             if (form){
                 form.addEventListener('submit',onCreateTask);
-                //form.addEventListener('change',onOrderBy);
+                form.addEventListener('change',onOrderBy);
             }
             header.initEventListeners();
         }
