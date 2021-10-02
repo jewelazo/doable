@@ -1,3 +1,5 @@
+import { ALFABETICO } from "./constants";
+
 const STORE = (function (){
     let userData={};
     let tasks=[];
@@ -28,6 +30,7 @@ const STORE = (function (){
         setTasks,
         getAllTasks,
         addNewTask,
+        //orderBy:ALFABETICO,
     }
 
 

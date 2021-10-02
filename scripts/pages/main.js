@@ -6,6 +6,14 @@ import STORE from "../store.js";
 const Main=(()=>{
     let header=HeaderPage();
 
+    // function onOrderBy(e){
+    //     const order=e.target;
+    //     console.log(order);
+    //     console.log(order.value);
+
+
+    // }
+
     async function onCreateTask(e){
         e.preventDefault();
         try{
@@ -66,8 +74,10 @@ const Main=(()=>{
         },
         initEventListeners: function(){
             const form=document.querySelector('.js-form-main');
+
             if (form){
                 form.addEventListener('submit',onCreateTask);
+                //form.addEventListener('change',onOrderBy);
             }
             header.initEventListeners();
         }
