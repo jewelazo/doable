@@ -57,6 +57,26 @@ const STORE = (function (){
     function getTask(id){
         return tasks.find(task =>task.id===id);
     }
+    function updateTaskByImg(taskId,important){
+        tasks=tasks.map(task => {
+            if(task.id===taskId){
+                return {...task,important};
+            }else{
+                return task;
+            }
+        })
+    }
+
+    function updateTaskByCheckbox(taskId,completed){
+        tasks=tasks.map(task => {
+            if(task.id===taskId){
+                return {...task,completed};
+            }else{
+                return task;
+            }
+        })
+    }
+
 
     return {
         clear,
@@ -75,6 +95,8 @@ const STORE = (function (){
         filterByImport,
         offByImport,
         getTask,
+        updateTaskByImg,
+        updateTaskByCheckbox,
     }
 
 
