@@ -2,20 +2,67 @@
     padding: 12px 131px 12px 129px;
     background-color: #E5E7EB;
 }
+.header-login img{
+    margin: 0 auto;
+}
 .container-login{
-    padding: 96px 18px 250px 14px;
+    padding: 96px 18px 290px 14px;
 }
-/* .email-input{
-    padding: 9px 13px;
-} */
-.btn-submit{
-    width: 328px;
+
+form{
+    display: grid;
+    gap: 16px;
 }
-.link-create-account{
-    text-decoration: none;
+label{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
 }
-.div-create-account{
+form div{
     display: flex;
-    width: 328px;
-    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+}
+input{
+    background: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 13px;
+}
+input::placeholder{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+.btn-submit{
+    background: #EC4899;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 6px;
+    padding: 9px 142.5px 9px 142.5px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+span{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    display: block;
+    margin-top: 16px;
+    color: #EC4899;
+    cursor: pointer;
 }
