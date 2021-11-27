@@ -12,6 +12,7 @@
     top: 16px;
     bottom: 16px;
     right: 19px;
+    cursor: pointer;
 }
 .filters{
     padding-top: 12px;
@@ -119,6 +120,7 @@ li{
     position:absolute;
     top: 6px;
     right: 2px;
+    cursor: pointer;
 }
 .span-date-on{
     font-size: 14px;

@@ -32,26 +32,26 @@ const Login=(()=>{
     return{
         render:()=>`
         <div class="header-login">
-        <img src="./assets/icons/doable.svg" alt="">
+        <img src="../../assets/icons/doable.svg" alt="">
         </div>
         <div class="container-login">
-        <form class="js-login" action="">
-            <div class="email-form">
-                <label for="">Email</label>
-                <div class="email-input"><input type="text" name="email" placeholder="you@example.com"></div>
-            </div>
-            <div class="email-form">
-                <label for="">Password</label>
-                <div class="email-input"><input type="password" name="password" placeholder="******"></div>
-            </div>
-            <button class="btn-submit" type="submit">Login</button>
-        </form>
-        <div class="div-create-account"><a class="link-create-account href=">Create account</a></div>
+            <form class="form-login" action="">
+                <div>
+                    <label class="label-login" for="">Email</label>
+                    <input class="input-login" type="text" name="email" placeholder="you@mail.com">
+                </div>
+                <div>
+                    <label class="label-login" for="">Password</label>
+                    <input class="input-login" type="password" name="password" placeholder="******">
+                </div>
+                <button class="btn-submit" type="submit">Login</button>
+            </form>
+            <span class="span-login">Create account</span>
         </div>
         `,
         initEventListeners:()=>{
-            const form=document.querySelector('.js-login');
-            const singUp=document.querySelector('.div-create-account')
+            const form=document.querySelector('.form-login');
+            const singUp=document.querySelector('.span-login')
             if (form){
                 form.addEventListener('submit',onLogin);
             }

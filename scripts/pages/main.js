@@ -111,41 +111,55 @@ const Main=(()=>{
             let allTasks=STORE.getAllTasks();
             console.log('ahora main es:',allTasks);
             let allTasksList=allTasks.map( task=>
-                `<li class="flex-task-li">
-                <div><input class="js-checkbox-pending" data-id=${task.id} type="checkbox" ${task.completed ? 'checked':''}></div>
-                <div class="flex-column-task">
-                    <div class="flex-description">
-                        <div>${task.title}</div>
-                        <div><img class="js-img-imp" data-id=${task.id} src="./assets/icons/${task.important ? 'icon_on_importance.svg':'icon_off_importance.svg'}" alt=""></div>
+                `<div class="card">
+                    <div class="card-main">
+                        <div class="checkbox-card">
+                            <input class="checkbox-main js-checkbox-pending" data-id=${task.id} type="checkbox" ${task.completed ? 'checked':''}>
+                        </div>
+                        <div class="card-description">
+                            <span class="span-task-on">${task.title}</span>
+                            <span class="span-date-on">${task['due_date']}</span>
+                        </div>
                     </div>
-                    <div class="date-task">${task['due_date']}</div>
+                    <img class="img-importance js-img-imp" data-id=${task.id} src="/assets/icons/${task.important ? 'icon_on_importance.svg':'icon_off_importance.svg'}" alt="">
                 </div>
-                </li>`);
+                `);
             //console.log(allTasksList);
             return `
                 ${header}
             <form class="js-form-main" action="">
-                <div>
-                <label for="sort">Sort</label>
-                <select class="js-select" name="sort" id="">
-                    <option value="alpha" ${STORE.orderBy===ALFABETICO ? 'selected':''}>Alphabetical (a-z)</option>
-                    <option value="date" ${STORE.orderBy===DUE_DATE ? 'selected':''}>Due Date</option>
-                    <option value="importance" ${STORE.orderBy===IMPORTANCE ? 'selected':''}>Importance</option>
-                </select>
+                <div class="filters">
+                    <div>
+                        <label for="sort">Sort</label>
+                        <select class="js-select" name="sort" id="">
+                            <option value="alpha" ${STORE.orderBy===ALFABETICO ? 'selected':''} >Alphabetical (a-z)</option>
+                            <option value="date" ${STORE.orderBy===DUE_DATE ? 'selected':''}>Due Date</option>
+                            <option value="importance" ${STORE.orderBy===IMPORTANCE ? 'selected':''}>Importance</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="show">Show</label>
+                        <div class="checkbox-main-container js-checkbox">
+                            <div>
+                                <input class="checkbox-main js-pending" type="checkbox" value="pending" ${STORE.onShow ? 'checked':''}>
+                                <span>Only pending</span>
+                            </div>
+                            <div>
+                                <input  class="checkbox-main js-import" type="checkbox" value="important" ${STORE.onImport ? 'checked':''}>
+                                <span>Only important</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="js-checkbox">
-                    <label for="show">Show</label>
-                    <input class="js-pending" type="checkbox" value="pending" ${STORE.onShow ? 'checked':''} >Only pending
-                    <input class="js-import" type="checkbox" value="important" ${STORE.onImport ? 'checked':''} >Only important
-                </div>
-                <ul>
+
+                <div class="cards-container">
                     ${allTasksList.join('')}
-                </ul>
+                </div>
                 <div class="mg-btn">
                     <input name="title" type="text" placeholder="do the dishes...">
-                    <input name="due_date" type="date" placeholder="mm / dd / yy">
+                    <input name="due_date" type="date">
                     <button class="btn-submit" type="submit">Add Task</button>
-                </div>
+                </div>    
                 </form>
                 `
         },
