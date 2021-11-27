@@ -16,7 +16,7 @@ const Main=(()=>{
             STORE.orderByAlpha();
             STORE.orderBy=ALFABETICO;
             let taskss=STORE.getAllTasks()
-            console.log('poralpha',taskss)
+            //console.log('poralpha',taskss)
             DOMHandler.render(Main);
             
         }
@@ -25,7 +25,7 @@ const Main=(()=>{
             STORE.orderByDate();
             STORE.orderBy=DUE_DATE;
             let taskss=STORE.getAllTasks()
-            console.log('pordate',taskss)
+            //console.log('pordate',taskss)
             DOMHandler.render(Main);
             
         }
@@ -34,7 +34,7 @@ const Main=(()=>{
             STORE.orderByImportance();
             STORE.orderBy=IMPORTANCE;
             let taskss=STORE.getAllTasks()
-            console.log('porimportancia',taskss)
+            //console.log('porimportancia',taskss)
             DOMHandler.render(Main);
             
         }
@@ -75,7 +75,7 @@ const Main=(()=>{
         try{
             const {title,due_date}=e.target;
             const newTask= await TaskFetcher.create({title:title.value,'due_date':due_date.value})
-            console.log(newTask);
+            //console.log(newTask);
             STORE.addNewTask(newTask);
             DOMHandler.render(Main);
 
@@ -109,7 +109,7 @@ const Main=(()=>{
     return {
         render: function(){
             let allTasks=STORE.getAllTasks();
-            console.log('ahora main es:',allTasks);
+            //console.log('ahora main es:',allTasks);
             let allTasksList=allTasks.map( task=>
                 `<div class="card">
                     <div class="card-main">
@@ -151,10 +151,11 @@ const Main=(()=>{
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="cards-container">
                     ${allTasksList.join('')}
                 </div>
+            
                 <div class="mg-btn">
                     <input name="title" type="text" placeholder="do the dishes...">
                     <input name="due_date" type="date">

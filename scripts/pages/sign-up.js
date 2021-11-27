@@ -2,6 +2,7 @@ import DOMHandler from "../../dom_handler.js";
 import { TaskFetcher } from "../services/task_fetcher.js";
 import { UserFetch } from "../services/user_fetch.js";
 import STORE from "../store.js";
+import { Loader } from "./loader.js";
 import Login from "./login.js";
 import Main from "./main.js";
 
@@ -9,15 +10,21 @@ import Main from "./main.js";
 const SignUp=(()=>{
     async function onCreateUser(e){
         e.preventDefault();
+        try{
         const {email,password}=e.target;
-        
+        DOMHandler.render(Loader)
         const newUserData= await UserFetch.createUser({email: email.value,password: password.value});
         sessionStorage.setItem('token',newUserData.token);
         const taskData= await TaskFetcher.getAll();
-        console.log(taskData);
-        console.log('cuenta creada');
+        //console.log(taskData);
+        //console.log('cuenta creada');
         STORE.setTasks(taskData)
         DOMHandler.render(Main)
+        }catch(e){
+            alert('Invalid data');
+            DOMHandler.render(SignUp)
+        }
+        
 
        
     }

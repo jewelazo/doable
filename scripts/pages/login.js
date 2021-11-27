@@ -2,6 +2,7 @@ import DOMHandler from "../../dom_handler.js";
 import { SessionFetcher } from "../services/sessions_fetch.js";
 import { TaskFetcher } from "../services/task_fetcher.js";
 import STORE from "../store.js";
+import { Loader } from "./loader.js";
 import Main from "./main.js";
 import SignUp from "./sign-up.js";
 
@@ -10,15 +11,16 @@ const Login=(()=>{
         e.preventDefault();
         try{
             const {email,password}=e.target;
+            DOMHandler.render(Loader)
             const userData= await SessionFetcher.login(email.value,password.value);
             STORE.setUserData(userData);
             sessionStorage.setItem('token',userData.token);
             const tasks = await TaskFetcher.getAll();
             STORE.setTasks(tasks);
-            //const taskData= await TaskFetcher.getAll();
             DOMHandler.render(Main);
         }catch(e){
             alert('Invalid Credentials');
+            DOMHandler.render(Login)
         }
 
     }
@@ -26,7 +28,7 @@ const Login=(()=>{
     async function onCreateUser(e){
         e.preventDefault();
         DOMHandler.render(SignUp);
-        console.log('creando cuenta');
+        //console.log('creando cuenta');
     }
 
     return{

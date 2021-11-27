@@ -91,6 +91,8 @@ li{
     padding-right: 16px;
     display: grid;
     gap: 12px;
+    overflow-y: auto;
+    margin-bottom: 300px;
 }
 .card{
     position: relative;
