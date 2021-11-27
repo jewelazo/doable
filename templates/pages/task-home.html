@@ -10,47 +10,62 @@
 <body>
     <div class="header-task">
         <img src="../../assets/icons/doable.svg" alt="">
-        <img src="../../assets/icons/icon-logout.svg" alt="">
+        <img class="js-logout-header" src="../../assets/icons/icon-logout.svg" alt="">
     </div>
-    <form action="">
-        <div>
-        <label for="sort">Sort</label>
-        <select name="sort" id="">
-            <option value="alphabetical">Alphabetical (a-z)</option>
-            <option value="date">Due Date</option>
-            <option value="importance">Importance</option>
-        </select>
-        </div>
-        <div>
-            <label for="show">Show</label>
-            <input type="checkbox" value="pending" checked>Only pending
-            <input type="checkbox" value="important" checked>Only important
-        </div>
-        <ul>
-            <li class="flex-task-li">
-                <div><input type="checkbox"></div>
-                <div class="flex-column-task">
-                    <div class="flex-description">
-                        <div>Complete assignments</div>
-                        <div><img src="./assets/icons/icon_off_importance.svg" alt=""></div>
+
+    <form  action="">
+        <div class="filters">
+            <div>
+                <label for="sort">Sort</label>
+                <select name="sort" id="">
+                    <option value="alphabetical">Alphabetical (a-z)</option>
+                    <option value="date">Due Date</option>
+                    <option value="importance">Importance</option>
+                </select>
+            </div>
+            <div>
+                <label for="show">Show</label>
+                <div class="checkbox-main-container">
+                    <div>
+                        <input class="checkbox-main" type="checkbox" value="pending" checked>
+                        <span>Only pending</span>
                     </div>
-                    <div class="date-task">Thursday, September 30</div>
-                </div>
-            </li>
-            <li class="flex-task-li">
-                <div><input type="checkbox"></div>
-                <div class="flex-column-task">
-                    <div class="flex-description">
-                        <div>Do exercise</div>
-                        <div><img src="./assets/icons/icon_off_importance.svg" alt=""></div>
+                    <div>
+                        <input  class="checkbox-main" type="checkbox" value="important" checked>
+                        <span>Only important</span>
                     </div>
-                    <div class="date-task">Thursday, September 30</div>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-main">
+                    <div class="checkbox-card">
+                        <input class="checkbox-main" type="checkbox">
+                    </div>
+                    <div class="card-description">
+                        <span class="span-task-on">Complete assignments</span>
+                        <span class="span-date-on">Thursday, September 30</span>
+                    </div>
+                </div>
+                <img class="img-importance" src="/assets/icons/icon_off_importance.svg" alt="">
+            </div>
+            <div class="card">
+                <div class="card-main">
+                    <div class="checkbox-card">
+                        <input class="checkbox-main" type="checkbox">
+                    </div>
+                    <div class="card-description">
+                        <span class="span-task-off">Complete assignments</span>
+                        <span class="span-date-off">Thursday, September 30</span>
+                    </div>
+                </div>
+                <img class="img-importance" src="/assets/icons/icon_off_importance.svg" alt="">
+            </div>
+        </div>
         <div class="mg-btn">
             <input name="title" type="text" placeholder="do the dishes...">
-            <input name="due_date" type="date" placeholder="mm / dd / yy">
+            <input name="due_date" type="date">
             <button class="btn-submit" type="submit">Add Task</button>
         </div>
 

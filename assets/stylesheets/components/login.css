@@ -9,23 +9,23 @@
     padding: 96px 18px 290px 14px;
 }
 
-form{
+.form-login{
     display: grid;
     gap: 16px;
 }
-label{
+.label-login{
     font-family: Inter;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
 }
-form div{
+.form-login div{
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
-input{
+.input-login{
     background: #FFFFFF;
     border: 1px solid #D1D5DB;
     box-sizing: border-box;
@@ -35,7 +35,7 @@ input{
     padding-bottom: 9px;
     padding-left: 13px;
 }
-input::placeholder{
+.input-login::placeholder{
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
@@ -55,7 +55,7 @@ input::placeholder{
     color: #FFFFFF;
     cursor: pointer;
 }
-span{
+.span-login{
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
