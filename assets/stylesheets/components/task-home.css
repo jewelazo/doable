@@ -92,7 +92,7 @@ li{
     display: grid;
     gap: 12px;
     overflow-y: auto;
-    margin-bottom: 300px;
+    margin-bottom: 400px;
 }
 .card{
     position: relative;
@@ -157,8 +157,8 @@ li{
     bottom: 0;
     width: 100%;
     display: grid;
-    padding-right: 18px;
-    padding-left: 14px;
+    padding: 4px 18px 4px 14px;
+    gap: 5px;
 }
 .mg-btn input{
     font-style: normal;
